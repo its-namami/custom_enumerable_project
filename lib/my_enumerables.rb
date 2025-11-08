@@ -1,11 +1,19 @@
+# frozen_string_literal: true
+
+# Extended enumertable with my own implementation of their methods
 module Enumerable
   # Your code goes here
 end
 
-# You will first have to define my_each
-# on the Array class. Methods defined in
-# your enumerable module will have access
-# to this method
+# Extended array with my_each
 class Array
-  # Define my_each here
+  def my_each
+    return self unless block_given?
+
+    for i in 0...length
+      yield self[i]
+    end
+
+    self
+  end
 end
