@@ -13,7 +13,7 @@ module Enumerable
     end
   end
 
-  def my_select(&block)
+  def my_select
     return enum_for(:my_each) unless block_given?
 
     selected = []
@@ -55,6 +55,16 @@ module Enumerable
     end
 
     true
+  end
+
+  def my_inject(inject)
+    return enum_for(:my_inject) unless block_given?
+
+    my_each do |element|
+      inject = yield inject, element
+    end
+
+    inject
   end
 end
 
