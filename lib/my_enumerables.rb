@@ -18,9 +18,7 @@ module Enumerable
 
     selected = []
 
-    my_each do |element|
-      selected << element if yield element
-    end
+    my_each { |element| selected << element if yield element }
 
     selected
   end
@@ -30,9 +28,7 @@ module Enumerable
 
     count = 0
 
-    my_each do |element|
-      count += 1 if yield element
-    end
+    my_each { |element| count += 1 if yield element }
 
     count
   end
@@ -40,9 +36,7 @@ module Enumerable
   def my_none?
     return empty? unless block_given?
 
-    my_each do |element|
-      return false if yield element
-    end
+    my_each { |element| return false if yield element }
 
     true
   end
@@ -50,9 +44,7 @@ module Enumerable
   def my_all?
     return true unless block_given?
 
-    my_each do |element|
-      return false unless yield element
-    end
+    my_each { |element| return false unless yield element }
 
     true
   end
@@ -60,9 +52,7 @@ module Enumerable
   def my_inject(inject)
     return enum_for(:my_inject) unless block_given?
 
-    my_each do |element|
-      inject = yield inject, element
-    end
+    my_each { |element| inject = yield inject, element }
 
     inject
   end
@@ -72,9 +62,7 @@ module Enumerable
 
     map = []
 
-    my_each do |element|
-      map << yield(element)
-    end
+    my_each { |element| map << yield(element) }
 
     map
   end
