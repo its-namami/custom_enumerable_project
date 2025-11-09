@@ -38,10 +38,20 @@ module Enumerable
   end
 
   def my_none?
-    return enum_for(:my_none) unless block_given?
+    return empty? unless block_given?
 
     my_each do |element|
       return false if yield element
+    end
+
+    true
+  end
+
+  def my_all?
+    return true unless block_given?
+
+    my_each do |element|
+      return false unless yield element
     end
 
     true
