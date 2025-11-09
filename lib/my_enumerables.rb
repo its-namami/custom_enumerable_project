@@ -11,6 +11,18 @@ module Enumerable
       index += 1
     end
   end
+
+  def my_select
+    return enum_for(:my_each) unless block_given?
+
+    selected = []
+
+    my_each do |element|
+      selected << element if yield element
+    end
+
+    selected
+  end
 end
 
 # Extended array with my_each
