@@ -33,6 +33,14 @@ module Enumerable
     count
   end
 
+  def my_any?(&block)
+    block ||= ->(element) { element }
+
+    my_each { |element| return true if block.call(element) }
+
+    false
+  end
+
   def my_none?
     return empty? unless block_given?
 
