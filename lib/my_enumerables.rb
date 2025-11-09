@@ -66,6 +66,18 @@ module Enumerable
 
     inject
   end
+
+  def my_map
+    return enum_for(:map) unless block_given?
+
+    map = []
+
+    my_each do |element|
+      map << yield(element)
+    end
+
+    map
+  end
 end
 
 # Extended array with my_each
